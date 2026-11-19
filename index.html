@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeVault | Snippet Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <div class="logo">&lt;/&gt;</div>
+                <div>
+                    <h1>CodeVault</h1>
+                    <p>Your personal code library</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button id="exportBtn" class="secondary-btn">
+                    Export
+                </button>
+
+                <button id="importBtn" class="secondary-btn">
+                    Import
+                </button>
+
+                <button id="addSnippetBtn" class="primary-btn">
+                    + New Snippet
+                </button>
+
+                <input
+                    type="file"
+                    id="importFile"
+                    accept=".json"
+                    hidden
+                >
+            </div>
+        </header>
+
+        <!-- Statistics -->
+        <section class="stats">
+            <div class="stat-card">
+                <span>Total Snippets</span>
+                <h2 id="totalCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Favorites</span>
+                <h2 id="favoriteCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <span>Languages</span>
+                <h2 id="languageCount">0</h2>
+            </div>
+        </section>
+
+        <!-- Search and Filters -->
+        <section class="toolbar">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search snippets, tags, code..."
+            >
+
+            <select id="languageFilter">
+                <option value="all">All Languages</option>
+            </select>
+
+            <select id="viewFilter">
+                <option value="all">All Snippets</option>
+                <option value="favorites">Favorites</option>
+            </select>
+
+            <select id="sortFilter">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="alphabetical">Alphabetical</option>
+            </select>
+
+        </section>
+
+        <!-- Snippets -->
+        <main>
+            <div class="section-heading">
+                <h2>Your Snippets</h2>
+                <span id="resultCount">0 results</span>
+            </div>
+
+            <div id="snippetGrid" class="snippet-grid"></div>
+
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">{ }</div>
+                <h3>No snippets found</h3>
+                <p>Save your first code snippet to get started.</p>
+
+                <button id="emptyAddBtn" class="primary-btn">
+                    Create Snippet
+                </button>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="modalOverlay" class="modal-overlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+                <h2 id="modalTitle">Create Snippet</h2>
+
+                <button id="closeModalBtn" class="close-btn">
+                    &times;
+                </button>
+            </div>
+
+            <form id="snippetForm">
+
+                <input type="hidden" id="snippetId">
+
+                <label for="titleInput">Title</label>
+
+                <input
+                    type="text"
+                    id="titleInput"
+                    placeholder="e.g. Array deduplication"
+                    maxlength="100"
+                    required
+                >
+
+                <label for="descriptionInput">Description</label>
+
+                <textarea
+                    id="descriptionInput"
+                    placeholder="What does this code do?"
+                    maxlength="300"
+                ></textarea>
+
+                <label for="languageInput">Programming Language</label>
+
+                <select id="languageInput" required>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Python">Python</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="Java">Java</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="C#">C#</option>
+                    <option value="PHP">PHP</option>
+                    <option value="SQL">SQL</option>
+                    <option value="TypeScript">TypeScript</option>
+                    <option value="Bash">Bash</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="tagsInput">Tags</label>
+
+                <input
+                    type="text"
+                    id="tagsInput"
+                    placeholder="array, utility, algorithm"
+                >
+
+                <small>Separate tags with commas.</small>
+
+                <label for="codeInput">Code</label>
+
+                <textarea
+                    id="codeInput"
+                    class="code-input"
+                    placeholder="Paste your code here..."
+                    required
+                ></textarea>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelBtn" class="secondary-btn">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Save Snippet
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>CodeVault — Built with Vanilla JavaScript</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
